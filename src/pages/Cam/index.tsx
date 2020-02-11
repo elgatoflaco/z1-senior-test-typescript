@@ -18,7 +18,6 @@ const videoConstraints = {
   facingMode: "user"
 };
 const CamPage: React.FC = () => {
-  // function CamPage() {
   const webcamRef = useRef(null);
   const [stopInterval, setStopInterval] = useState(true);
   const [idCard, setIdCard] = useLocalStorage("id_card", "");
@@ -34,8 +33,7 @@ const CamPage: React.FC = () => {
     }
   });
 
-  // const MemoizedComponent = useCallback(, [text]);
-  const memoizedCallback = useCallback(async () => {
+  const validateIdCard = useCallback(async () => {
     await window
       .fetch("https://front-exercise.z1.digital/evaluations", {
         method: "POST"
@@ -61,14 +59,12 @@ const CamPage: React.FC = () => {
   const capture = React.useCallback(() => {
     if (webcamRef != null) {
       const imageSrc = webcamRef.current.getScreenshot();
-      // console.log(imageSrc)
       cropImage(imageSrc, (url: any) => {
         setIdCard(url);
       });
-      memoizedCallback();
-      // validatePhoto(imageSrc, console.log("cb"));
+      validateIdCard();
     }
-  }, [memoizedCallback, setIdCard]);
+  }, [validateIdCard, setIdCard]);
 
   return (
     <>
