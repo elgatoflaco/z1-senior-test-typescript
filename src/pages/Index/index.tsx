@@ -7,7 +7,6 @@ import ImagePreview from "../../components/ImagePreview";
 const IndexPage: React.FC = () => {
   const [idCard, setIdCard] = useLocalStorage("id_card", '');
   const [status, setStatus] = useLocalStorage("status", '');
-console.log(idCard)
   return (
     <>
       <Container>
